@@ -20,8 +20,7 @@ $(function() {
             var d = data.regions;
             var stuff = tryToPrintStuff(d);
             console.log(stuff);
-            
-            makeCorsRequest();
+            callToFDA(stuff);
             
             
         })
@@ -56,7 +55,7 @@ $(function() {
         }
     }
 
-   /* function callToFDA(code){
+    function callToFDA(code){
 
         $.ajax({
             //url: "https://api.seer.cancer.gov/rest/ndc/code/0002-3227",
@@ -73,55 +72,9 @@ $(function() {
             error: function(error){
                 console.log("error");
             }
-    });
-    } */
+        });
+    }
 
-    // Create the XHR object.
-function createCORSRequest(method, url) {
-  var xhr = new XMLHttpRequest();
-  if ("withCredentials" in xhr) {
-    // XHR for Chrome/Firefox/Opera/Safari.
-    xhr.open(method, url, true);
-  } else if (typeof XDomainRequest != "undefined") {
-    // XDomainRequest for IE.
-    xhr = new XDomainRequest();
-    xhr.open(method, url);
-  } else {
-    // CORS not supported.
-    xhr = null;
-  }
-  return xhr;
-}
-
-// Helper method to parse the title tag from the response.
-function getTitle(text) {
-  return text.match('<title>(.*)?</title>')[1];
-}
-
-// Make the actual CORS request.
-function makeCorsRequest() {
-  // This is a sample server that supports CORS.
-  var url = 'https://api.seer.cancer.gov/rest/ndc/code/0002-3227?api_key=f929900216c19d0abddf952cc341c2d3&callback=?';
-
-  var xhr = createCORSRequest('GET', url);
-  if (!xhr) {
-    alert('CORS not supported');
-    return;
-  }
-
-  // Response handlers.
-  xhr.onload = function() {
-    var text = xhr.responseText;
-    var title = getTitle(text);
-    alert('Response from CORS request to ' + url + ': ' + title);
-  };
-
-  xhr.onerror = function() {
-    alert('Woops, there was an error making the request.');
-  };
-
-  xhr.send();
-}
     //..0409-6509-01
 
     //FDA API KEY : mWyxGz0B531XZ1BQ3YVuCBvWvvTMxua3Li7P5I0h
