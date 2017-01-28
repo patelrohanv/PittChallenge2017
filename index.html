@@ -10,19 +10,18 @@
 
          <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="fetchData.js"></script>
+        
     </head>
     <body>     
-         <form action="" method=get>
-          <button>Upload</button>
-          Frequency: <input type="text" name="freq"><br>
-          Interval: <input type="text" name="interval"><br>
-          Amount: <input type="text" name="amt">
-        </form> 
+        <div class="container-fluid">
+             <form action="" method=get>
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                How often should you take this?: <input type="text" name="freq"><br>
+                Is this daily or weekly?: <input type="text" name="interval"><br>
+                How many tablets/pills should you take?: <input type="text" name="amt"><br>
+                What is your phone number?: <input type="text" name="phone"><br>
+            </form> 
+        </div>
     </body>
 </html>
