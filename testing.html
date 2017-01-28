@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Testing Calls</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -28,7 +28,8 @@
         .done(function(data) {
             alert("success");
             var d = data.regions;
-            var stuff = tryToPrintStuff(d);
+            
+            callToNIH();
             
             
         })
@@ -60,10 +61,29 @@
             }
         }
     }
+    
 
-    function callToFDA(code){
-        
+    function callToNIH(){ 
+        var myURL = 'https://api.seer.cancer.gov/rest/ndc/code/0002-1407';
+        $.ajax({
+            type: "GET",
+            url: myURL,
+            dataType: "json",
+            headers: {
+                "X-SEERAPI-Key" : "f929900216c19d0abddf952cc341c2d3"
+            },
+            success: function(result){
+                console.log(result);
+            },
+            error: function(xhr, status, error){
+
+            }
+        });
+    
+
     }
+
+
     //..0409-6509-01
 
     //FDA API KEY : mWyxGz0B531XZ1BQ3YVuCBvWvvTMxua3Li7P5I0h
@@ -72,14 +92,7 @@
 
     //Cancer seer API: f929900216c19d0abddf952cc341c2d3
 
-    $.getJSON('rest/disease/latest?&api_key=f929900216c19d0abddf952cc341c2d3Y&callback=?', function(data) {
-    var output = '';
-    $.each(data.results, function(key, val) {
-    output += val.id + ' - ' + val.name + '\n';
-    });
- 
-    alert(output);
-});
+
 
 </script>
 </body>
