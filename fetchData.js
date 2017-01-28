@@ -1,9 +1,4 @@
-//<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-//<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
-<script type="text/javascript">
+
     $(function() {
         var params = {
             // Request parameters
@@ -26,6 +21,7 @@
             alert("success");
             var d = data.regions;
             var stuff = tryToPrintStuff(d);
+            console.log(stuff);
             
             
         })
@@ -45,11 +41,13 @@
                     for(word in searchWords){
                         var hope = searchWords[word];
                         for(key in hope){
-                            
+                        
                             if(checkWord == true){
                                 return hope[key].text;
                             }
-                            console.log(hope[key].text);
+                            if(hope[key].text == "NDC"){
+                                checkWord = true;
+                            }
                             
                         }
                     }
@@ -59,7 +57,13 @@
     }
 
     function callToFDA(code){
-        
+           $.getJSON('rest/disease/latest?&api_key=f929900216c19d0abddf952cc341c2d3Y&callback=?', function(data) {
+            var output = '';
+            $.each(data.results, function(key, val) {
+            output += val.id + ' - ' + val.name + '\n';
+            });
+         });
+        alert(output);
     }
     //..0409-6509-01
 
@@ -69,13 +73,5 @@
 
     //Cancer seer API: f929900216c19d0abddf952cc341c2d3
 
-    $.getJSON('rest/disease/latest?&api_key=f929900216c19d0abddf952cc341c2d3Y&callback=?', function(data) {
-    var output = '';
-    $.each(data.results, function(key, val) {
-    output += val.id + ' - ' + val.name + '\n';
-    });
  
-    alert(output);
-});
 
-</script>
