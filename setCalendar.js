@@ -47,7 +47,7 @@ function addToCalendar() {
  event.end.dateTime.setHours(event.end.dateTime.getHours() + i);  event.end.dateTime.setMinutes(event.end.dateTime.getMinutes() + 30);
 
         var request = gapi.client.calendar.events.insert({
-          'calendarId': ' sve7g5a9jaeae21kl80p18suns@group.calendar.google.com',
+          'calendarId': 'sve7g5a9jaeae21kl80p18suns@group.calendar.google.com',
           'resource': event
         });
     }
