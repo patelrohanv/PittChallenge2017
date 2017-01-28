@@ -12,56 +12,49 @@ var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
 
 function addToCalendar() {
+    console.log("here1");
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var startDateTime = date+' '+time;
     var thisTimeZone = today.getTimezoneOffset;
     
-    var event = {
-      'summary': '',
-      'location': '',
-      'description': '',
-      'start': {
-        'dateTime': '',
-        'timeZone': ''
-      },
-      'end': {
-        'dateTime': '',
-        'timeZone': ''
-      },
-      'recurrence': [
-        'RRULE:FREQ=DAILY;COUNT=30'
-      ],
-      'attendees': [
-        {'email': ''},
-        {'email': ''}
-      ],
-      'reminders': {
-        'useDefault': false,
-        'overrides': [
-          {'method': 'email', 'minutes': 24 * 60},
-          {'method': 'popup', 'minutes': 10}
-        ]
-      }
-    };
-    
-    event.summary = "Take " #amt + " tablets/pills";
-    event.start.dateTime = startDateTime;
-    event.start.timeZone = thisTimeZone;
-    event.end.timeZone = thisTimeZone;
-    event.end.timeZone.setMinutes(thisTimeZone.getMinutes() + 30);
-    event.end.timeZone = thisTimeZone;
-    
-    
-    var request = gapi.client.calendar.events.insert({
-      'calendarId': ' sve7g5a9jaeae21kl80p18suns@group.calendar.google.com',
-      'resource': event
-    });
+    var freq = Document.getElementById("freq").value;
+    var amt = Document.getElementById("amt").value;
+    for(var i = 1; i <= freq; i++ ){
+        console.log("here");
+        var event = {
+          'summary': '',
+          'start': {
+            'dateTime': '',
+            'timeZone': ''
+          },
+          'end': {
+            'dateTime': '',
+            'timeZone': ''
+          },
+          'recurrence': [
+            'RRULE:FREQ=DAILY;COUNT=30'
+          ],
+        };
 
-    request.execute(function(event) {
-      appendPre('Event created: ' + event.htmlLink);
-    });
+        event.summary = "Take " + amt + " tablets/pills";
+        event.start.dateTime = startDateTime;
+        event.start.dateTime.setHours(event.start.dateTime.getHours() + i);
+        event.start.timeZone = thisTimeZone;
+        
+        event.end.dateTime = thisTimeZone;
+ event.end.dateTime.setHours(event.end.dateTime.getHours() + i);  event.end.dateTime.setMinutes(event.end.dateTime.getMinutes() + 30);
+
+        var request = gapi.client.calendar.events.insert({
+          'calendarId': ' sve7g5a9jaeae21kl80p18suns@group.calendar.google.com',
+          'resource': event
+        });
+
+        request.execute(function(event) {
+          appendPre('Event created: ' + event.htmlLink);
+        });
+    }
 }
 
 /**
@@ -99,7 +92,6 @@ function updateSigninStatus(isSignedIn) {
     if (isSignedIn) {
       authorizeButton.style.display = 'none';
       signoutButton.style.display = 'block';
-      listUpcomingEvents();
     } else {
       authorizeButton.style.display = 'block';
       signoutButton.style.display = 'none';
@@ -118,48 +110,4 @@ function handleAuthClick(event) {
 */
 function handleSignoutClick(event) {
     gapi.auth2.getAuthInstance().signOut();
-}
-
-/**
-* Append a pre element to the body containing the given message
-* as its text node. Used to display the results of the API call.
-*
-* @param {string} message Text to be placed in pre element.
-*/
-function appendPre(message) {
-    var pre = document.getElementById('content');
-    var textContent = document.createTextNode(message + '\n');
-    pre.appendChild(textContent);
-}
-
-/**
-* Print the summary and start datetime/date of the next ten events in
-* the authorized user's calendar. If no events are found an
-* appropriate message is printed.
-*/
-function listUpcomingEvents() {
-    gapi.client.calendar.events.list({
-      'calendarId': 'primary',
-      'timeMin': (new Date()).toISOString(),
-      'showDeleted': false,
-      'singleEvents': true,
-      'maxResults': 10,
-      'orderBy': 'startTime'
-    }).then(function(response) {
-      var events = response.result.items;
-      appendPre('Upcoming events:');
-
-      if (events.length > 0) {
-        for (i = 0; i < events.length; i++) {
-          var event = events[i];
-          var when = event.start.dateTime;
-          if (!when) {
-            when = event.start.date;
-          }
-          appendPre(event.summary + ' (' + when + ')')
-        }
-      } else {
-        appendPre('No upcoming events found.');
-      }
-    });
 }
