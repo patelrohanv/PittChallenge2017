@@ -11,30 +11,22 @@
          <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">    
     </head>
-    <body>     
+    <body> 
+        <h1> PharGet Me Not! </h1>    
         <div class="container-fluid">
              <form action="" method=get>
                 <input type="file" name="fileToUpload" id="fileToUpload">
-                How often should you take this?: <input type="text" name="freq"><br>
-                Is this daily or weekly?: <input type="text" name="interval"><br>
-                How many tablets/pills should you take?: <input type="text" name="amt"><br>
-                What is your phone number?: <input type="text" name="phone"><br>
+               <span> How often should you take this?:</span> <input id="perDay" type="text" name="freq"><br>
+                <span>Is this daily or weekly?:</span> <input id="freq" type="text" name="interval"><br>
+                <span>How many tablets/pills should you take?: </span><input id="numberOf" type="text" name="amt"><br>
+                <span>What is your phone number?: </span> <input type="text" name="phone"><br>
             </form> 
         </div>
         <div>
             <table width="100%">
-                <tr><td/><td><h1>PharmGet Me Not!</h1></td></tr>
                 <tr>
                     <td align="right"/>
                     <td><input id="useMic" type="checkbox">Use Microphone</td>
-                </tr>
-                <tr>
-                    <td align="right">LUIS AppId:</td>
-                    <td><input id="luis_appid" type="text" size="40"></td>
-                </tr>
-                <tr>
-                    <td align="right">LUIS SubscriptionId:</td>
-                    <td><input id="luis_subid" type="text" size="40"></td>
                 </tr>
                 <tr>
                  <td />
@@ -45,9 +37,8 @@
                     <textarea id="output" style='width:400px;height:200px'></textarea>
                 </td>
                 </tr>
-                <tr><td />
-                </tr>
                 </table>
+            </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 //<!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

@@ -1,5 +1,7 @@
         var client;
         var request;
+        var LUISApp = "7a780877-d55a-4fed-8532-9e39f7ef41e1";
+        var LUISSub = "b749e49536724ecb88aa13a0569d37bd";
 
         function useMic() {
             return document.getElementById("useMic").checked;
@@ -24,11 +26,14 @@
 
         function setText(text) {
             document.getElementById("output").value += text;
+            var parsed = text;
+            
+            
         }
 
         function getLuisConfig() {
-            var appid = document.getElementById("luis_appid").value;
-            var subid = document.getElementById("luis_subid").value;
+            var appid = "7a780877-d55a-4fed-8532-9e39f7ef41e1";
+            var subid = "b749e49536724ecb88aa13a0569d37bd";
 
             if (appid.length > 0 && subid.length > 0) {
                 return { appid: appid, subid: subid };
@@ -91,14 +96,38 @@
             }
 
             client.onPartialResponseReceived = function (response) {
-                setText(response);
+                
             }
 
             client.onFinalResponseReceived = function (response) {
-                setText(JSON.stringify(response));
+                
             }
 
             client.onIntentReceived = function (response) {
+                console.log("its me again!");
                 setText(response);
+                var parsed = JSON.parse(response);
+                parseResponse(parsed.entities);
             };
+
+            function parseResponse(response){
+                response.forEach(function(data){
+                    switch(data.type){
+                        case "howMany" : 
+                            console.log("howMany: " + data.entity);
+                            document.getElementById('numberOf').value = data.entity;
+                            break;
+                        case "perDay" :
+                            console.log("perDay" + data.entity);
+                            document.getElementById('perDay').value = data.entity;
+                            break;
+                        case "Frequency" :
+                            console.log("Frequency: " + data.entity);
+                            document.getElementById('freq').value = data.entity;
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
         }

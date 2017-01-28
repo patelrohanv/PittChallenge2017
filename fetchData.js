@@ -1,5 +1,4 @@
-
-    $(function() {
+$(function() {
         var params = {
             // Request parameters
             "language": "unk",
@@ -18,7 +17,6 @@
             data: '{"url":"http://medlibrary.org/lib/images-rx/adderall-2/7ad6983d-1e30-450e-8122-26418ae6efed-01.jpg"}',
         })
         .done(function(data) {
-            alert("success");
             var d = data.regions;
             var stuff = tryToPrintStuff(d);
             console.log(stuff);
