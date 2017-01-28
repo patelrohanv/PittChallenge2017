@@ -15,7 +15,7 @@
             },
             type: "POST",
             // Request body
-            data: '{"url":"https://rxtoolkitlabels.com/wp-content/uploads/2013/10/Vancomycin-Barcode-with-highlight1.jpg"}',
+            data: '{"url":"http://medlibrary.org/lib/images-rx/adderall-2/7ad6983d-1e30-450e-8122-26418ae6efed-01.jpg"}',
         })
         .done(function(data) {
             alert("success");
@@ -56,15 +56,15 @@
         }
     }
 
-    function callToFDA(code){
-           $.getJSON('rest/disease/latest?&api_key=f929900216c19d0abddf952cc341c2d3Y&callback=?', function(data) {
+    /*function callToFDA(code){
+           $.getJSON('api.seer.rest/disease/latest?&api_key=f929900216c19d0abddf952cc341c2d3Y&callback=?', function(data) {
             var output = '';
             $.each(data.results, function(key, val) {
             output += val.id + ' - ' + val.name + '\n';
             });
          });
         alert(output);
-    }
+    }*/
     //..0409-6509-01
 
     //FDA API KEY : mWyxGz0B531XZ1BQ3YVuCBvWvvTMxua3Li7P5I0h
