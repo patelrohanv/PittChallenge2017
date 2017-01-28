@@ -1,0 +1,155 @@
+	#banner {
+		background-color: #00cdcf;
+		color: #ffffff;
+		padding: 8em 0 6em 0;
+		text-align: center;
+	}
+
+		#banner input, #banner select, #banner textarea {
+			color: #ffffff;
+		}
+
+		#banner a {
+			color: #00cdcf;
+		}
+
+		#banner strong, #banner b {
+			color: #ffffff;
+		}
+
+		#banner h1, #banner h2, #banner h3, #banner h4, #banner h5, #banner h6 {
+			color: #ffffff;
+		}
+
+		#banner blockquote {
+			border-left-color: rgba(255, 255, 255, 0.25);
+		}
+
+		#banner code {
+			background: rgba(255, 255, 255, 0.075);
+			border-color: rgba(255, 255, 255, 0.25);
+		}
+
+		#banner hr {
+			border-bottom-color: rgba(255, 255, 255, 0.25);
+		}
+
+		#banner input[type="submit"],
+		#banner input[type="reset"],
+		#banner input[type="button"],
+		#banner button,
+		#banner .button {
+			background-color: #f7f7f7;
+			color: #555 !important;
+		}
+
+			#banner input[type="submit"]:hover,
+			#banner input[type="reset"]:hover,
+			#banner input[type="button"]:hover,
+			#banner button:hover,
+			#banner .button:hover {
+				background-color: white;
+			}
+
+			#banner input[type="submit"]:active,
+			#banner input[type="reset"]:active,
+			#banner input[type="button"]:active,
+			#banner button:active,
+			#banner .button:active {
+				background-color: #eaeaea;
+			}
+
+			#banner input[type="submit"].alt,
+			#banner input[type="reset"].alt,
+			#banner input[type="button"].alt,
+			#banner button.alt,
+			#banner .button.alt {
+				background-color: transparent;
+				box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.25);
+				color: #ffffff !important;
+			}
+
+				#banner input[type="submit"].alt:hover,
+				#banner input[type="reset"].alt:hover,
+				#banner input[type="button"].alt:hover,
+				#banner button.alt:hover,
+				#banner .button.alt:hover {
+					background-color: rgba(255, 255, 255, 0.075);
+				}
+
+				#banner input[type="submit"].alt:active,
+				#banner input[type="reset"].alt:active,
+				#banner input[type="button"].alt:active,
+				#banner button.alt:active,
+				#banner .button.alt:active {
+					background-color: rgba(255, 255, 255, 0.2);
+				}
+
+				#banner input[type="submit"].alt.icon:before,
+				#banner input[type="reset"].alt.icon:before,
+				#banner input[type="button"].alt.icon:before,
+				#banner button.alt.icon:before,
+				#banner .button.alt.icon:before {
+					color: #99ebeb;
+				}
+
+			#banner input[type="submit"].special,
+			#banner input[type="reset"].special,
+			#banner input[type="button"].special,
+			#banner button.special,
+			#banner .button.special {
+				background-color: #009a9c;
+				color: #fff !important;
+			}
+
+				#banner input[type="submit"].special:hover,
+				#banner input[type="reset"].special:hover,
+				#banner input[type="button"].special:hover,
+				#banner button.special:hover,
+				#banner .button.special:hover {
+					background-color: #00b4b5;
+				}
+
+				#banner input[type="submit"].special:active,
+				#banner input[type="reset"].special:active,
+				#banner input[type="button"].special:active,
+				#banner button.special:active,
+				#banner .button.special:active {
+					background-color: #008183;
+				}
+
+		#banner h2 {
+			border-style: double solid;
+			border-width: 4px 1px;
+			font-size: 2.4em;
+			line-height: 1.35em;
+			margin: 0 auto 1em;
+			padding: 1.1em;
+			position: relative;
+			width: 40%;
+		}
+
+		#banner p {
+			font-size: 1.5em;
+			text-transform: uppercase;
+		}
+
+		@media screen and (max-width: 1680px) {
+
+			#banner {
+				padding: 8em 0 6em 0;
+			}
+
+		}
+
+		@media screen and (max-width: 1280px) {
+
+			#banner {
+				padding: 6em 0 4em 0;
+			}
+
+				#banner h2 {
+					width: 50%;
+				}
+
+		}

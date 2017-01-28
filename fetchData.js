@@ -14,14 +14,13 @@ $(function() {
             },
             type: "POST",
             // Request body
-            data: '{"url":"http://medlibrary.org/lib/images-rx/adderall-2/7ad6983d-1e30-450e-8122-26418ae6efed-01.jpg"}',
+            data: '{"url":"http://medlibrary.org/lib/images-rx/morphine-sulfate-11/morphine-sulfate-injection-anda-6.jpg"}',
         })
         .done(function(data) {
             var d = data.regions;
             var stuff = tryToPrintStuff(d);
-            console.log(stuff);
-            callToFDA(stuff);
             
+        callCSV(stuff);
             
         })
         .fail(function() {
@@ -55,33 +54,76 @@ $(function() {
         }
     }
 
-    function callToFDA(code){
-
-        $.ajax({
-            //url: "https://api.seer.cancer.gov/rest/ndc/code/0002-3227",
-            url: "	https://api.seer.cancer.gov/rest/disease/latest?type=HEMATO&q=basophilic",
-            beforeSend: function(xhrObj){
-                // Request headers
-                xhrObj.setRequestHeader("Access-Control-Request-Method", "GET");
-                xhrObj.setRequestHeader("X-SEERAPI-Key","f929900216c19d0abddf952cc341c2d3");
-            },
-            type: 'GET',
-            success: function(data){
-                console.log("success");
-            },
-            error: function(error){
-                console.log("error");
-            }
-        });
+    function callCSV(code){
+        var myString = `[
+  {
+    "PRODUCTID": "0409-6509_44e1fb49-2a7f-4149-acc9-27d362047c71",
+    "PRODUCTNDC": "0409-6509",
+    "PRODUCTTYPENAME": "HUMAN PRESCRIPTION DRUG",
+    "PROPRIETARYNAME": "Vancomycin Hydrochloride",
+    "PROPRIETARYNAMESUFFIX": "",
+    "NONPROPRIETARYNAME": "VANCOMYCIN HYDROCHLORIDE",
+    "DOSAGEFORMNAME": "INJECTION, POWDER, LYOPHILIZED, FOR SOLUTION",
+    "ROUTENAME": "INTRAVENOUS",
+    "STARTMARKETINGDATE": 20050606,
+    "ENDMARKETINGDATE": "",
+    "MARKETINGCATEGORYNAME": "ANDA",
+    "APPLICATIONNUMBER": "ANDA063076",
+    "LABELERNAME": "Hospira, Inc.",
+    "SUBSTANCENAME": "VANCOMYCIN HYDROCHLORIDE",
+    "ACTIVE_NUMERATOR_STRENGTH": 500,
+    "ACTIVE_INGRED_UNIT": "mg/10mL",
+    "PHARM_CLASSES": "Glycopeptide Antibacterial [EPC],Glycopeptides [Chemical/Ingredient]",
+    "DEASCHEDULE": ""
+  },
+  {
+    "PRODUCTID": "0143-9908_23f89437-006e-4487-b224-f48045dab0b5",
+    "PRODUCTNDC": "0143-9908",
+    "PRODUCTTYPENAME": "HUMAN PRESCRIPTION DRUG",
+    "PROPRIETARYNAME": "NAPROXEN",
+    "PROPRIETARYNAMESUFFIX": "",
+    "NONPROPRIETARYNAME": "naproxen sodium",
+    "DOSAGEFORMNAME": "TABLET, FILM COATED",
+    "ROUTENAME": "ORAL",
+    "STARTMARKETINGDATE": 19960514,
+    "ENDMARKETINGDATE": "",
+    "MARKETINGCATEGORYNAME": "ANDA",
+    "APPLICATIONNUMBER": "ANDA074480",
+    "LABELERNAME": "West-Ward Pharmaceutical Corp",
+    "SUBSTANCENAME": "NAPROXEN SODIUM",
+    "ACTIVE_NUMERATOR_STRENGTH": 550,
+    "ACTIVE_INGRED_UNIT": "mg/1",
+    "PHARM_CLASSES": "Cyclooxygenase Inhibitors [MoA],Nonsteroidal Anti-inflammatory Compounds [Chemical/Ingredient],Nonsteroidal Anti-inflammatory Drug [EPC]",
+    "DEASCHEDULE": ""
+  },
+  {
+    "PRODUCTID": "0641-6126_a5957925-ce8b-4bbc-97ff-99600bbda304",
+    "PRODUCTNDC": "0641-6126",
+    "PRODUCTTYPENAME": "HUMAN PRESCRIPTION DRUG",
+    "PROPRIETARYNAME": "Morphine Sulfate",
+    "PROPRIETARYNAMESUFFIX": "",
+    "NONPROPRIETARYNAME": "Morphine Sulfate",
+    "DOSAGEFORMNAME": "INJECTION",
+    "ROUTENAME": "INTRAVENOUS",
+    "STARTMARKETINGDATE": 20150603,
+    "ENDMARKETINGDATE": "",
+    "MARKETINGCATEGORYNAME": "ANDA",
+    "APPLICATIONNUMBER": "ANDA205758",
+    "LABELERNAME": "West-Ward Pharmaceuticals Corp.",
+    "SUBSTANCENAME": "MORPHINE SULFATE",
+    "ACTIVE_NUMERATOR_STRENGTH": 8,
+    "ACTIVE_INGRED_UNIT": "mg/mL",
+    "PHARM_CLASSES": "Full Opioid Agonists [MoA],Opioid Agonist [EPC]",
+    "DEASCHEDULE": "CII"
+  }
+]`
+var obj = JSON.parse(myString);
+var smallCode = code.substring(0, 9)
+console.log(smallCode);
+for(var key in obj){
+    if(obj[key].PRODUCTNDC == smallCode){
+        console.log(obj[key].PROPRIETARYNAME);
+        
     }
-
-    //..0409-6509-01
-
-    //FDA API KEY : mWyxGz0B531XZ1BQ3YVuCBvWvvTMxua3Li7P5I0h
-    //FDA URL https://api.fda.gov/drug/event.json?api_key=yourAPIKeyHere&search=
-    //FDA Reference : https://open.fda.gov/api/reference/
-
-    //Cancer seer API: f929900216c19d0abddf952cc341c2d3
-
- 
-
+}
+    }

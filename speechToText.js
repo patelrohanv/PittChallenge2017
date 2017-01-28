@@ -48,8 +48,7 @@
 
             clearText();
 
-            if (useMic()) {
-                if (luisCfg) {
+            if (luisCfg) {
                     client = Microsoft.CognitiveServices.SpeechRecognition.SpeechRecognitionServiceFactory.createMicrophoneClientWithIntent(
                         getLanguage(),
                         getKey(),
@@ -65,36 +64,7 @@
                 setTimeout(function () {
                     client.endMicAndRecognition();
                 }, 5000);
-            } else {
-                if (luisCfg) {
-                    client = Microsoft.CognitiveServices.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClientWithIntent(
-                        getLanguage(),
-                        getKey(),
-                        luisCfg.appid,
-                        luisCfg.subid);
-                } else {
-                    client = Microsoft.CognitiveServices.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(
-                        mode,
-                        getLanguage(),
-                        getKey());
-                }
-                request = new XMLHttpRequest();
-                request.open(
-                    'GET',
-                    (mode == Microsoft.CognitiveServices.SpeechRecognition.SpeechRecognitionMode.shortPhrase) ? "whatstheweatherlike.wav" : "batman.wav",
-                    true);
-                request.responseType = 'arraybuffer';
-                request.onload = function () {
-                    if (request.status !== 200) {
-                        setText("unable to receive audio file");
-                    } else {
-                        client.sendAudio(request.response, request.response.length);
-                    }
-                };
-
-                request.send();
-            }
-
+        
             client.onPartialResponseReceived = function (response) {
                 
             }
@@ -108,6 +78,7 @@
                 setText(response);
                 var parsed = JSON.parse(response);
                 parseResponse(parsed.entities);
+                console.log(parsed);
             };
 
             function parseResponse(response){
