@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
            
     </head>
-    <body>
+    <body onload="initClient();">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
         <div class="navbar-header">
@@ -21,18 +21,17 @@
         </div>
         <ul class="nav navbar-nav">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Sign Up</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="#" id="authorize-button" onClick="handleAuthClick()">Auth</a></li>
+        <li><a href="#" id="signout-button"  onClick="handleSignoutClick()">Signout</a></li>
     </ul>
   </div>
 </nav>
         <section id="banner">
 				<h2>PharGet Me Not!</h2>
         </section>
-  
         <div class="container-fluid">
         
-             <form action="" method=get>
+             <form action="addToCalendar();" method=get>
                 <div class="form-group">
                 <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
@@ -60,6 +59,9 @@
                 <button onclick="start()">Start</button></td>
                 <textarea id="output" style='width:400px;height:200px' hidden></textarea>
             </div>
+        </div>
+        <div>
+            <iframe src="https://calendar.google.com/calendar/embed?src=sve7g5a9jaeae21kl80p18suns%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- Latest compiled JavaScript -->

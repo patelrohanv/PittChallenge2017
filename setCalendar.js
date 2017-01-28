@@ -50,10 +50,6 @@ function addToCalendar() {
           'calendarId': ' sve7g5a9jaeae21kl80p18suns@group.calendar.google.com',
           'resource': event
         });
-
-        request.execute(function(event) {
-          appendPre('Event created: ' + event.htmlLink);
-        });
     }
 }
 
