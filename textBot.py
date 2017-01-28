@@ -4,7 +4,6 @@ import sys
 
 from twilio.rest import TwilioRestClient
 
-
 class Patient(object):
     def __init__(self, drug, freq, interval, amt, phone):
         self.drug = drug
@@ -12,8 +11,11 @@ class Patient(object):
         self.interval = interval
         self.amt = amt
         self.phone = phone
+#    def __init__(self,j):
+#        self.__dict__ = json.loads(j)
 
 #request = json.load(sys.stdin)
+#patient = Patient(request)
 #response = handle_request(request)
 #print("Content-Type: application/json", end="\n\n")
 #json.dump(response, sys.stdout, indent=2)

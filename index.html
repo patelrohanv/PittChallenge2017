@@ -36,21 +36,25 @@
                 <input type="file" name="fileToUpload" id="fileToUpload">
                 </div>
             <div class="form-group">
+               <label> What medication is this?:</label><input id="med" type="text" name="drug" class="form-control"><br>
+            </div>
+            <div class="form-group">
                <label> How often should you take this?:</label><input id="perDay" type="text" name="freq" class="form-control"><br>
             </div>
             <div class="form-group">  
-                <label>Is this daily or weekly?:</label> <input id="freq" type="text" name="interval" class="form-control"><br>
+                <label>Is this daily or weekly?:</label> <input id="interval" type="text" name="interval" class="form-control"><br>
             </div>
             <div class="form-group">  
                 <label>How many tablets/pills should you take?: </label><input id="numberOf" type="text" name="amt" class="form-control">
             </div>
             <div class="form-group">
-                <label> is your phone number?: </label><input type="text" name="phone" class="form-control"><br>
+                <label> is your phone number?: </label><input id="ph" type="text" name="phone" class="form-control"><br>
             </div>
             <div class="form-group">
-                <input id="sendInput" value="submit!" type="button" class="form-control" onclick="addtoCalendar()"> </input>
+                <input id="sendInput" value="submit!" type="button" class="form-control" onclick="formData()"> </input>
             </div>
             </form>   
+        
             <h4> Record your dosage! </h4>
             <div class="form-group">
                 <input id="useMic" type="checkbox"><label>Use Microphone</lable>
@@ -63,6 +67,32 @@
         <div>
             <iframe src="https://calendar.google.com/calendar/embed?src=sve7g5a9jaeae21kl80p18suns%40group.calendar.google.com&ctz=America/New_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
+        <script>
+            function formData(){
+                var drug = document.getElementById("med").value;
+                var freq = document.getElementById("perDay").value;
+                var interval = document.getElementById("interval").value;
+                var amt = document.getElementById("numberOf").value;
+                var phone = document.getElementById("ph").value;
+                var obj = { "drug": drug,"freq": freq, "interval": interval,"amt": amt, "phone": phone};
+                
+                console.log(obj);
+                $.ajax({
+                    url: "http://localhost:8000/textBot.py",
+                    type: "post",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(obj),
+                    success: function(response){
+                        console.log(response.message);
+                        console.log(response.keys);
+                        console.log(response.data);
+
+                    }
+                });
+            }
+
+        </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://apis.google.com/js/platform.js?onload=onLoadCallback"></script>
 <!-- Latest compiled JavaScript -->
