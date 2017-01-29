@@ -14,23 +14,22 @@ class Patient(object):
 #    def __init__(self,j):
 #        self.__dict__ = json.loads(j)
 
-#request = json.load(sys.stdin)
-#patient = Patient(request)
-#response = handle_request(request)
-#print("Content-Type: application/json", end="\n\n")
-#json.dump(response, sys.stdout, indent=2)
+request = json.load(sys.stdin)
+patient = Patient(request)
+response = handle_request(request)
+print("Content-Type: application/json", end="\n\n")
+json.dump(response, sys.stdout, indent=2)
 
-patient = Patient("tylenol", 2, "daily", 4, 7814922824)
+
 #replace <your_account_sid> with your accountSid
-#accountSid = <your_account_sid>
-accountSid = "ACd79be66d0f4e49dd3cecd0486730ffa3"
+accountSid = <your_account_sid>
+
 #replace <your_auth_token> with your auth_token
-#authToken = <your_auth_token>
-authToken = "80fe45a4928ad87f046734b685bfe1e5"
+authToken = <your_auth_token>
+
 twilioClient = TwilioRestClient(accountSid, authToken)
 #replace <twilio_sender_number> with your twilio number
-#myTwilioNumber = <twilio_sender_number>
-myTwilioNumber = 7814104220 
+myTwilioNumber = <twilio_sender_number>
 #the destination cell number will be passed in from the json
 destCellPhone = patient.phone
 
